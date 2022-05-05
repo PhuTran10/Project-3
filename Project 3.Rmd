@@ -52,13 +52,16 @@ games <- read_csv("Video_Games_Sales_as_at_22_Dec_2016.csv")
 ```{r}
 ggplot(games, aes(x = Genre, y = Global_Sales)) +
   geom_col(fill = "blue") +
-  scale_y_continuous(breaks = seq(from = 0, to = 90, by = 5), limits = c(0,85)) +
+  scale_y_continuous(breaks = seq(from = 0, to = 90, by = 5), limits = c(0,90)) +
   scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
   labs(
     title = "Global Video Games Sale",
     y = "Sales in Millions ($)"
   )
 ```
+
+
+
 
 ##
 
