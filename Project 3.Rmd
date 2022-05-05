@@ -1,0 +1,76 @@
+---
+title: "Video Game Sales"
+author: "Author: Phu Tran"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
+output: ioslides_presentation
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+## Packages Used
+
+I used tidyverse data manipulation and plotting.
+
+```{r, echo = TRUE}
+library(tidyverse)
+```
+
+I need scales to adjust the axis.
+
+```{r, echo = TRUE}
+library(scales)
+```
+
+I need ggplot2 to create a graph.
+
+```{r, echo = TRUE}
+library(ggplot2)
+```
+
+
+## Video Games Dataset
+
+I used the dataset from Kaggle, specifically looking at Video Games Sales. The dataset was last updated in December 2016. All video game sales are from different platforms (PlayStation, Xbox, Nintendo). Why are video games have good sales?
+  
+  
+* `Type of Genre`
+* `Review By Critics` : rated by Metacritic
+
+```{r}
+games <- read_csv("Video_Games_Sales_as_at_22_Dec_2016.csv")
+```
+
+##
+
+```{r}
+ggplot(games, aes(x = Genre, y = Global_Sales)) +
+  geom_col(fill = "blue") +
+  scale_y_continuous(breaks = seq(from = 0, to = 90, by = 5), limits = c(0,85)) +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
+  labs(
+    title = "Global Video Games Sale",
+    y = "Sales in Millions ($)"
+  )
+```
+
+##
+
+
+```{r}
+ggplot(games, aes(x = Genre, y = Critic_Score)) +
+  geom_col(fill = "lightgreen") +
+  scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10), limits = c(0,98)) +
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) +
+  labs(
+    title = "Critic Scores for Each Genre",
+    y = "Critic Scores"
+  )
+```
+
